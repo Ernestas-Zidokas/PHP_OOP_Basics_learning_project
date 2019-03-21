@@ -1,5 +1,6 @@
 <?php
-declare (strict_types = 1);
+require '../vendor/autoload.php';
+require '../core/functions/form.php';
 
 ?>
 <html>
@@ -7,6 +8,6 @@ declare (strict_types = 1);
         <title>OOP</title>
     </head>
     <body>
-
+        Labas
     </body>
 </html>
