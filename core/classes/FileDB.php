@@ -1,6 +1,8 @@
 <?php
 
-Class FileDb {
+namespace Core;
+
+Class FileDB {
 
     private $file_uri;
     private $data;
@@ -20,7 +22,7 @@ Class FileDb {
     }
 
     public function getRow($table, $row_id) {
-        return $this->data[$table][$row_id];
+        return $this->data[$table][$row_id] ?? false;
     }
 
     public function getRowColumn($table, $row_id, $column_id) {
