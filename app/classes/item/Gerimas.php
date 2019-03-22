@@ -43,9 +43,9 @@ Class Gerimas {
     }
 
     public function setData(array $data) {
-        $this->setName($data['name'] ?? null);
-        $this->setAmount($data['amount_ml'] ?? null);
-        $this->setAbarot($data['abarot'] ?? null);
+        $this->setName($data['name'] ?? '');
+        $this->setAmount($data['amount_ml'] ?? 0);
+        $this->setAbarot($data['abarot'] ?? 0);
     }
 
     public function getData() {

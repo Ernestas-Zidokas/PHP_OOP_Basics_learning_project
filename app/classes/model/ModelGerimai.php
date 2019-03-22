@@ -14,6 +14,7 @@ Class ModelGerimai {
 
     public function load($id) {
         $data_row = $this->db->getRow($this->table_name, $id);
+        
         if ($data_row) {
             return new \App\Item\Gerimas($data_row);
         } else {
@@ -25,6 +26,7 @@ Class ModelGerimai {
         if (!$this->db->getRow($this->table_name, $id)) {
             $this->db->setRow($this->table_name, $id, $gerimas->getData());
             $this->db->save();
+            
             return true;
         } else {
             return false;
@@ -35,6 +37,7 @@ Class ModelGerimai {
         if ($this->db->getRow($this->table_name, $id)) {
             $this->db->setRow($this->table_name, $id, $gerimas->getData());
             $this->db->save();
+
             return true;
         } else {
             return false;
@@ -45,9 +48,18 @@ Class ModelGerimai {
         if ($this->db->getRow($this->table_name, $id)) {
             $this->db->delete($this->table_name, $id);
             $this->db->save();
+
             return true;
         } else {
             return false;
+        }
+    }
+    
+    public function loadAll(){
+        $gerimu_masyvas = [];
+        
+        foreach($this->db->loadAll($this->table_name) as $gerimas){
+            $gerimu_masyvas[] = \App\Item\Gerimas($gerimas);
         }
     }
 
