@@ -52,12 +52,20 @@ Class FileDB {
     }
 
     public function loadAll($table) {
-        if($this->data[$table]){
+        if ($this->data[$table]) {
             return $this->data[$table];
         } else {
             return false;
         }
+    }
 
+    public function deleteAll($table) {
+        if ($this->data[$table]) {
+            unset($this->data[$table]);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
