@@ -30,11 +30,11 @@ Class FileDB {
     }
 
     public function load() {
-        if (!file_exists($this->file_uri)) {
-            $this->data = [];
-        } else {
+        if (file_exists($this->file_uri)) {
             $json_data = file_get_contents($this->file_uri);
             $this->data = json_decode($json_data, true);
+        } else {
+            $this->data = [];
         }
     }
 
@@ -47,22 +47,34 @@ Class FileDB {
         }
     }
 
-    public function delete($table, $row_id) {
+    public function deleteRow($table, $row_id) {
         unset($this->data[$table][$row_id]);
     }
 
-    public function loadAll($table) {
-        if ($this->data[$table]) {
+    public function tableExists($table) {
+        return isset($this->data[$table]) ? true : false;
+    }
+
+    public function getRows($table) {
+        if ($this->tableExists($table)) {
             return $this->data[$table];
         } else {
             return false;
         }
     }
 
-    public function deleteAll($table) {
-        if ($this->data[$table]) {
-            unset($this->data[$table]);
+    public function deleteRows($table) {
+        if ($this->tableExists($table)) {
+            $this->data[$table] = [];
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteTable($table) {
+        if ($this->tableExists($table)) {
+            unset($this->data[$table]);
         } else {
             return false;
         }

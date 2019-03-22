@@ -13,7 +13,7 @@ $kokteilis = new \App\Item\Gerimas([
 
 $model_gerimai = new App\model\ModelGerimai($db, 'kokteiliai');
 //$model_gerimai->insert('kokteilis', $kokteilis);
-$model_gerimai->deleteAll();
+$model_gerimai->deleteRows();
 ?>
 <html>
     <head>
