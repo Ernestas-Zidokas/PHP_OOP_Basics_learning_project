@@ -12,8 +12,8 @@ $kokteilis = new \App\Item\Gerimas([
     ]);
 
 $model_gerimai = new App\model\ModelGerimai($db, 'kokteiliai');
-$model_gerimai->insert('kokteilis', $kokteilis);
-//$model_gerimai->delete('kokteilis');
+//$model_gerimai->insert('kokteilis', $kokteilis);
+$model_gerimai->deleteAll();
 ?>
 <html>
     <head>

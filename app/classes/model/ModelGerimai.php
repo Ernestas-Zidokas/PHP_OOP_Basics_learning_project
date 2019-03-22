@@ -67,5 +67,7 @@ Class ModelGerimai {
     
     public function deleteAll(){
         $this->db->deleteAll($this->table_name);
+        $this->db->save();
+
     }
 }
