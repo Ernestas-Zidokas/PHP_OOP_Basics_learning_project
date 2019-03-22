@@ -61,6 +61,7 @@ Class ModelGerimai {
         foreach($this->db->loadAll($this->table_name) as $gerimas){
             $gerimu_masyvas[] = \App\Item\Gerimas($gerimas);
         }
+        return $gerimu_masyvas;
     }
 
 }
