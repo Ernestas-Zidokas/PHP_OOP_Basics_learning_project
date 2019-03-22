@@ -44,6 +44,7 @@ Class ModelGerimai {
     public function delete($id) {
         if ($this->db->getRow($this->table_name, $id)) {
             $this->db->delete($this->table_name, $id);
+            $this->db->save();
             return true;
         } else {
             return false;
