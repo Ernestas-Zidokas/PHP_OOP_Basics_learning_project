@@ -46,6 +46,10 @@ Class FileDB {
             throw new Exception('Neisejo issaugoti i faila.');
         }
     }
+    
+    public function delete($table, $row_id){
+        unset($this->data[$table][$row_id]);
+    }
 
 }
 
