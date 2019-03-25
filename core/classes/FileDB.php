@@ -47,7 +47,7 @@ Class FileDB {
     }
 
     /**
-     * 
+     * Gets the specific row from given table.
      * @param type string $table
      * @param type string $row_id
      * @return type array
@@ -57,7 +57,7 @@ Class FileDB {
     }
 
     /**
-     * 
+     * Gets the specific column from given table and specific row.
      * @param type string $table
      * @param type string $row_id
      * @param type string $column_id

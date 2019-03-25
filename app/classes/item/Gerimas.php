@@ -7,18 +7,20 @@ namespace App\Item;
  */
 Class Gerimas {
 
-    /**
-     *
-     * @var type Data[] Array of data.
-     */
+    /** @var array Array of data */
     private $data;
-
+    
+    /**
+     * 
+     * @param type $data
+     */
     public function __construct($data = null) {
         if (!$data) {
             $this->data = [
                 'name' => null,
                 'amount_ml' => null,
-                'abarot' => null
+                'abarot' => null,
+                'image' => null
             ];
         } else {
             $this->setData($data);
@@ -72,6 +74,14 @@ Class Gerimas {
     public function getAbarot() {
         return $this->data['abarot'];
     }
+    
+    public function getImage(){
+        return $this->data['image'];
+    }
+    
+    public function setImage(string $image){
+        $this->data['image'] = $image;
+    }
 
     /**
      * Sets the given data array by the indexes into the object.
@@ -81,6 +91,7 @@ Class Gerimas {
         $this->setName($data['name'] ?? '');
         $this->setAmount($data['amount_ml'] ?? 0);
         $this->setAbarot($data['abarot'] ?? 0);
+        $this->setImage($data['image'] ?? '');
     }
 
     /**
