@@ -97,7 +97,7 @@ Class ModelGerimai {
         $gerimu_masyvas = [];
 
         foreach ($this->db->getRows($this->table_name) as $gerimas) {
-            $gerimu_masyvas[] = \App\Item\Gerimas($gerimas);
+            $gerimu_masyvas[] = new \App\Item\Gerimas($gerimas);
         }
 
         return $gerimu_masyvas;

@@ -1,1 +1,1 @@
-{"kokteiliai":[]}
+{"kokteiliai":{"kokteilis":{"name":"Rutos dizzly kokteilis","amount_ml":500,"abarot":11,"image":"images\/banana.gif"}}}

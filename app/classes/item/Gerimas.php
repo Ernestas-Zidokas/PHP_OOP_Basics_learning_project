@@ -9,7 +9,7 @@ Class Gerimas {
 
     /** @var array Array of data */
     private $data;
-    
+
     /**
      * 
      * @param type $data
@@ -74,12 +74,20 @@ Class Gerimas {
     public function getAbarot() {
         return $this->data['abarot'];
     }
-    
-    public function getImage(){
+
+    /**
+     * Gets the image of given object.
+     * @return string
+     */
+    public function getImage() {
         return $this->data['image'];
     }
-    
-    public function setImage(string $image){
+
+    /**
+     * Sets the image of given object.
+     * @param string $image
+     */
+    public function setImage(string $image) {
         $this->data['image'] = $image;
     }
 

@@ -7,18 +7,19 @@ $db->save();
 $kokteilis = new \App\Item\Gerimas([
     'name' => 'Rutos dizzly kokteilis',
     'amount_ml' => 500,
-    'abarot' => 11.00
+    'abarot' => 11.00,
+    'image' => 'images/banana.gif'
         ]);
 
 $model_gerimai = new App\model\ModelGerimai($db, 'kokteiliai');
-//$model_gerimai->insert('kokteilis', $kokteilis);
-$model_gerimai->deleteRows();
+$model_gerimai->insert('kokteilis', $kokteilis);
+//$model_gerimai->deleteRows();
 ?>
 <html>
     <head>
         <title>OOP</title>
     </head>
     <body>
-        Labas
+        <img src="<?php print $kokteilis->getImage(); ?>"
     </body>
 </html>
