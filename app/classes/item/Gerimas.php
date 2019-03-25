@@ -52,8 +52,16 @@ Class Gerimas {
     }
 
     /**
+     * Sets the image of given object.
+     * @param string $image
+     */
+    public function setImage(string $image) {
+        $this->data['image'] = $image;
+    }
+
+    /**
      * Gets the name of given object.
-     * @return type string
+     * @return string
      */
     public function getName() {
         return $this->data['name'];
@@ -61,7 +69,7 @@ Class Gerimas {
 
     /**
      * Gets the amount of given object.
-     * @return type float
+     * @return float
      */
     public function getAmount() {
         return $this->data['amount_ml'];
@@ -69,7 +77,7 @@ Class Gerimas {
 
     /**
      * Gets the abarot of given object.
-     * @return type int
+     * @return int
      */
     public function getAbarot() {
         return $this->data['abarot'];
@@ -81,14 +89,6 @@ Class Gerimas {
      */
     public function getImage() {
         return $this->data['image'];
-    }
-
-    /**
-     * Sets the image of given object.
-     * @param string $image
-     */
-    public function setImage(string $image) {
-        $this->data['image'] = $image;
     }
 
     /**
