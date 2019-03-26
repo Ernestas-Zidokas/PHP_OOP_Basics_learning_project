@@ -119,11 +119,11 @@ function validate_is_number($field_input, &$field, $safe_input) {
 }
 
 function validate_file($field_input, &$field, &$safe_input) {
-    var_dump($_FILES);
+
     if (isset($_FILES[$field['id']])) {
         $file = $_FILES[$field['id']];
         $safe_input[$field['id']] = $file;
-        $field['file'] = $file;
+//        $field['file'] = $file;
 
         return true;
     } else {

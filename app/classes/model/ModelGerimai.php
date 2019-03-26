@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model;
+namespace App\Model;
 
 /**
  * Class for working between database class and "Gerimai" class.
