@@ -24,7 +24,11 @@
             <?php endif; ?>
         </label>
     <?php endforeach; ?>
-
+    
+    <?php if (isset($form['error_msg'])): ?>
+        <p class="error"><?php print $form['error_msg']; ?></p>
+    <?php endif; ?>
+        
     <!-- Buttons -->
     <?php foreach ($form['buttons'] as $button_id => $button): ?>
         <button name="action" value="<?php print $button_id; ?>">

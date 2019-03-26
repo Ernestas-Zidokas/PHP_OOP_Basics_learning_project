@@ -26,6 +26,7 @@ $form = [
             'placeholder' => '500',
             'validate' => [
                 'validate_not_empty',
+                'validate_is_number'
             ]
         ],
         'drink_foto' => [
@@ -36,6 +37,9 @@ $form = [
                 'validate_file'
             ]
         ]
+    ],
+    'validate' => [
+        'validate_form_image'
     ],
     'buttons' => [
         'submit' => [
@@ -50,13 +54,22 @@ $form = [
     ]
 ];
 
+function validate_form_image(&$safe_input, &$form) {
+    $file_saved_url = save_file($safe_input['drink_foto']);
+    if ($file_saved_url) {
+        $safe_input['drink_foto'] = $file_saved_url;
+        return true;
+    } else {
+        $form['error_msg'] ='Jobans/a tu buhurs/gazele nes failas supistas!';
+    }
+}
+
 function form_success($safe_input, $form) {
-    $file_saved_url = 'uploads/' . save_file($safe_input['drink_foto']);
     $gerimas = new \App\Item\Gerimas([
         'name' => $safe_input['drink_name'],
         'amount_ml' => $safe_input['drink_amount'],
         'abarot' => $safe_input['drink_abarot'],
-        'image' => $file_saved_url
+        'image' => $safe_input['drink_foto']
     ]);
 
     $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
@@ -74,7 +87,7 @@ $model_kokteiliai = new App\model\ModelGerimai($db, USER_DRINKS);
 //$model_gerimai->insert('vanduo', $vanduo);
 //$model_gerimai->deleteRows();
 
-function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpg']) {
+function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpeg', 'image/gif']) {
     if ($file['error'] == 0 && in_array($file['type'], $allowed_types)) {
         $target_file_name = microtime() . '-' . strtolower($file['name']);
         $target_path = $dir . '/' . $target_file_name;
