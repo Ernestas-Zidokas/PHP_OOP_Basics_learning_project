@@ -60,7 +60,7 @@ function form_success($safe_input, $form) {
     ]);
 
     $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-    $model_gerimai = new App\model\ModelGerimai($db, USER_DRINKS );
+    $model_gerimai = new App\model\ModelGerimai($db, USER_DRINKS);
     $model_gerimai->insert(date("Y-m-d-H:m:s"), $gerimas);
 }
 
@@ -72,7 +72,6 @@ $model_kokteiliai = new App\model\ModelGerimai($db, USER_DRINKS);
 //$model_gerimai->insert('svyturio', $svyturio);
 //$model_gerimai->insert('vodka', $vodka);
 //$model_gerimai->insert('vanduo', $vanduo);
-
 //$model_gerimai->deleteRows();
 
 function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpg']) {
