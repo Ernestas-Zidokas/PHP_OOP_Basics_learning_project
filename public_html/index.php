@@ -39,7 +39,7 @@ $form = [
         ]
     ],
     'validate' => [
-        'validate_form_image'
+        'validate_form_file'
     ],
     'buttons' => [
         'submit' => [
@@ -54,13 +54,16 @@ $form = [
     ]
 ];
 
-function validate_form_image(&$safe_input, &$form) {
+function validate_form_file(&$safe_input, &$form) {
     $file_saved_url = save_file($safe_input['drink_foto']);
+    var_dump('issaugojo i faila');
+    var_dump($file_saved_url);
     if ($file_saved_url) {
-        $safe_input['drink_foto'] = $file_saved_url;
+        $safe_input['drink_foto'] = 'uploads/' . $file_saved_url;
+        var_dump('praejo file saved ifa');
         return true;
     } else {
-        $form['error_msg'] ='Jobans/a tu buhurs/gazele nes failas supistas!';
+        $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';
     }
 }
 
@@ -74,12 +77,8 @@ function form_success($safe_input, $form) {
 
     $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
     $model_gerimai = new App\model\ModelGerimai($db, USER_DRINKS);
-    $model_gerimai->insert(date("Y-m-d-H:m:s"), $gerimas);
+    $model_gerimai->insert(microtime(), $gerimas);
 }
-
-$db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
-//$model_gerimai = new App\model\ModelGerimai($db, 'kokteiliai');
-$model_kokteiliai = new App\model\ModelGerimai($db, USER_DRINKS);
 
 //$model_gerimai->insert('kokteilis', $kokteilis);
 //$model_gerimai->insert('svyturio', $svyturio);
@@ -109,18 +108,22 @@ if (!empty($_POST)) {
         ]);
     }
 }
+
+$db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
+$model_kokteiliai = new App\model\ModelGerimai($db, USER_DRINKS);
 ?>
 <html>
     <head>
         <title>OOP</title>
+        <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
         <?php foreach ($model_kokteiliai->loadAll() as $kokteilis): ?>
-            <div>
+            <div class="katalogas">
                 <h2>Vardas: <?php print $kokteilis->getName(); ?></h2>
                 <p>Abarotai: <?php print $kokteilis->getAbarot(); ?></p>
                 <p>Kiekis: <?php print $kokteilis->getAmount(); ?></p>
-                <img src="<?php print $kokteilis->getImage(); ?>"
+                <img class="kokteilis-img" src="<?php print $kokteilis->getImage(); ?>"
             </div>
         <?php endforeach; ?>
         <?php require '../core/views/form.php'; ?>

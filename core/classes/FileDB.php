@@ -120,7 +120,7 @@ Class FileDB {
         if ($this->tableExists($table)) {
             return $this->data[$table];
         } else {
-            return false;
+            return [];
         }
     }
 
