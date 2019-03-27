@@ -56,11 +56,8 @@ $form = [
 
 function validate_form_file(&$safe_input, &$form) {
     $file_saved_url = save_file($safe_input['drink_foto']);
-    var_dump('issaugojo i faila');
-    var_dump($file_saved_url);
     if ($file_saved_url) {
         $safe_input['drink_foto'] = 'uploads/' . $file_saved_url;
-        var_dump('praejo file saved ifa');
         return true;
     } else {
         $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';

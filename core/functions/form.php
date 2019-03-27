@@ -119,16 +119,14 @@ function validate_is_number($field_input, &$field, $safe_input) {
 }
 
 function validate_file($field_input, &$field, &$safe_input) {
+    $file = $_FILES[$field['id']] ?? false;
 
-    if (isset($_FILES[$field['id']])) {
-        $file = $_FILES[$field['id']];
-        $safe_input[$field['id']] = $file;
-//        $field['file'] = $file;
-
-        return true;
+    if ($file) {
+        if ($file['error'] == 0) {
+            $safe_input[$field['id']] = $file;
+            return true;
+        }
     } else {
-        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'nes @field bloga foto!', ['@field' => $field['label']
-        ]);
+        $field['error_msg'] = 'Nenurodei fotkes';
     }
 }
