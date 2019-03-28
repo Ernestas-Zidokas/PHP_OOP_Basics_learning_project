@@ -5,7 +5,7 @@ namespace App;
 Class User {
 
     private $data;
-    
+
     const ORIENTATION_GAY = 'g';
     const ORIENTATION_STRAIGHT = 's';
     const ORIENTATION_BISEXUAL = 'b';
@@ -45,13 +45,13 @@ Class User {
     }
 
     public function setGender(string $gender) {
-        if(in_array($gender, [$this::MALE, $this::FEMALE])){
+        if (in_array($gender, [$this::GENDER_MALE, $this::GENDER_FEMALE])) {
             $this->data['gender'] = $gender;
-        }        
+        }
     }
 
     public function setOrientation(string $orientation) {
-        if(in_array($orientation, [$this::GAY, $this::STRAIGHT, $this::BISEXUAL])){
+        if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
     }
@@ -90,12 +90,12 @@ Class User {
 
     public function setData(array $data) {
         $this->setName($data['name'] ?? '');
-        $this->setAmount($data['email'] ?? '');
-        $this->setAbarot($data['full_name'] ?? '');
-        $this->setImage($data['age'] ?? null);
-        $this->setAmount($data['gender'] ?? '');
-        $this->setAmount($data['orientation'] ?? '');
-        $this->setAmount($data['photo'] ?? '');
+        $this->setEmail($data['email'] ?? '');
+        $this->setFullName($data['full_name'] ?? '');
+        $this->setAge($data['age'] ?? null);
+        $this->setGender($data['gender'] ?? '');
+        $this->setOrientation($data['orientation'] ?? '');
+        $this->setPhoto($data['photo'] ?? '');
     }
 
     public function getData() {
