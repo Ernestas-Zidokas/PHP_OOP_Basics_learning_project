@@ -32,6 +32,8 @@ $form = [
             'label' => 'Age',
             'placeholder' => '26',
             'type' => 'number',
+            'min' => 0,
+            'max' => 999,
             'validate' => [
                 'validate_not_empty',
                 'validate_is_number'
