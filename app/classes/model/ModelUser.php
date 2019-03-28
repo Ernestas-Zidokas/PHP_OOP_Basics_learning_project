@@ -59,16 +59,12 @@ Class ModelUser {
         $user_masyvas = [];
 
         foreach ($this->db->getRows($this->table_name) as $user) {
-            $user_masyvas[] = new \App\Item\Gerimas($user);
+            $user_masyvas[] = new \App\User($user);
         }
 
         return $user_masyvas;
     }
 
-    /**
-     * Deletes all the rows from the given table, and saves into the database.
-     * @return boolean
-     */
     public function deleteRows() {
         if ($this->db->deleteRows($this->table_name)) {
             $this->db->save();
@@ -78,10 +74,6 @@ Class ModelUser {
         }
     }
 
-    /**
-     * Deletes whole given table and saves it into the database.
-     * @return boolean
-     */
     public function deleteTable() {
         if ($this->db->deleteTable($this->table_name)) {
             $this->db->save();
