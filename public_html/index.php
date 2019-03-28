@@ -120,7 +120,7 @@ $model_kokteiliai = new App\model\ModelGerimai($db, USER_DRINKS);
                 <h2>Vardas: <?php print $kokteilis->getName(); ?></h2>
                 <p>Abarotai: <?php print $kokteilis->getAbarot(); ?></p>
                 <p>Kiekis: <?php print $kokteilis->getAmount(); ?></p>
-                <img class="kokteilis-img" src="<?php print $kokteilis->getImage(); ?>"
+                <img src="<?php print $kokteilis->getImage(); ?>"
             </div>
         <?php endforeach; ?>
         <?php require '../core/views/form.php'; ?>

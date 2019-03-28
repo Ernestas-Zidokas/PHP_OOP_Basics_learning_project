@@ -33,6 +33,7 @@ $form = [
             'placeholder' => '26',
             'type' => 'number',
             'validate' => [
+                'validate_not_empty',
                 'validate_is_number'
             ]
         ],
@@ -40,19 +41,19 @@ $form = [
             'label' => 'Gender',
             'type' => 'select',
             'placeholder' => '',
+            'options' => App\User::getGenderOptions(),
             'validate' => [
                 'validate_not_empty'
-            ],
-            'options' => App\User::getGenderOptions()
+            ]
         ],
         'orientation' => [
             'label' => 'Orientation',
             'type' => 'select',
             'placeholder' => '',
+            'options' => App\User::getOrientationOptions(),
             'validate' => [
                 'validate_not_empty'
             ],
-            'options' => App\User::getOrientationOptions()
         ],
         'photo' => [
             'label' => 'Photo',
@@ -97,24 +98,21 @@ function form_success($safe_input, $form) {
 
 function validate_form_file(&$safe_input, &$form) {
     $file_saved_url = save_file($safe_input['photo']);
+
     if ($file_saved_url) {
         $safe_input['photo'] = 'uploads/' . $file_saved_url;
+
         return true;
     } else {
         $form['error_msg'] = 'Jobans/a tu buhurs/gazele nes failas supistas!';
     }
 }
 
-//$model_gerimai->insert('kokteilis', $kokteilis);
-//$model_gerimai->insert('svyturio', $svyturio);
-//$model_gerimai->insert('vodka', $vodka);
-//$model_gerimai->insert('vanduo', $vanduo);
-//$model_gerimai->deleteRows();
-
 function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpeg', 'image/gif']) {
     if ($file['error'] == 0 && in_array($file['type'], $allowed_types)) {
         $target_file_name = microtime() . '-' . strtolower($file['name']);
         $target_path = $dir . '/' . $target_file_name;
+
         if (move_uploaded_file($file['tmp_name'], $target_path)) {
             return $target_file_name;
         }
@@ -122,11 +120,10 @@ function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'imag
     return false;
 }
 
-$success_msg = '';
-
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     $form_success = validate_form($safe_input, $form);
+
     if ($form_success) {
         $success_msg = strtr('User "@username" sėkmingai sukurtas!', [
             '@username' => $safe_input['username']
@@ -144,19 +141,19 @@ $model_user = new App\Model\ModelUser($db, USER);
     </head>
     <body>
         <?php foreach ($model_user->loadAll() as $user): ?>
-            <div class="katalogas">
-                <h2>Username: <?php print $user->getUsername(); ?></h2>
+            <div class="container">
+                <h3>Username: <?php print $user->getUsername(); ?></h3>
                 <p>Email: <?php print $user->getEmail(); ?></p>
                 <p>Full Name: <?php print $user->getFullName(); ?></p>
                 <p>Age: <?php print $user->getAge(); ?></p>
-                <p>Gender: <?php print $user->getGender(); ?></p>
-                <p>Orientation: <?php print $user->getOrientation(); ?></p>
-                <img class="user-img" src="<?php print $user->getPhoto(); ?>">
+                <p>Gender: <?php print App\User::getGenderOptions()[$user->getGender()]; ?></p>
+                <p>Orientation: <?php print App\User::getOrientationOptions()[$user->getOrientation()]; ?></p>
+                <img src="<?php print $user->getPhoto(); ?>">
             </div>
         <?php endforeach; ?>
         <?php require '../core/views/form.php'; ?>
-        <?php if(isset($success_msg)): ?>
-        <h3><?php print $success_msg; ?></h3>
+        <?php if (isset($success_msg)): ?>
+            <h3><?php print $success_msg; ?></h3>
         <?php endif; ?>
     </body>
 </html>
