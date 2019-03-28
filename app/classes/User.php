@@ -15,7 +15,7 @@ Class User {
     public function __construct($data = null) {
         if (!$data) {
             $this->data = [
-                'user_name' => null,
+                'username' => null,
                 'email' => null,
                 'full_name' => null,
                 'age' => null,
@@ -29,7 +29,7 @@ Class User {
     }
 
     public function setUserName(string $name) {
-        $this->data['user_name'] = $name;
+        $this->data['username'] = $name;
     }
 
     public function setEmail(string $email) {
@@ -51,7 +51,10 @@ Class User {
     }
 
     public function setOrientation(string $orientation) {
-        if (in_array($orientation, [$this::ORIENTATION_GAY, $this::ORIENTATION_STRAIGHT, $this::ORIENTATION_BISEXUAL])) {
+        if (in_array($orientation, [
+            $this::ORIENTATION_GAY, 
+            $this::ORIENTATION_STRAIGHT, 
+            $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
     }
@@ -60,7 +63,7 @@ Class User {
         $this->data['photo'] = $photo;
     }
 
-    public function getUserName() {
+    public function getUsername() {
         return $this->data['name'];
     }
 
@@ -89,7 +92,7 @@ Class User {
     }
 
     public function setData(array $data) {
-        $this->setUserName($data['name'] ?? '');
+        $this->setUsername($data['username'] ?? '');
         $this->setEmail($data['email'] ?? '');
         $this->setFullName($data['full_name'] ?? '');
         $this->setAge($data['age'] ?? null);

@@ -1,5 +1,5 @@
 ﻿# Bananu valgymo guide:
-![GitHub Logo](/images/banana.gif)
+![GitHub Logo](public_html/images/banana.gif)
 ## Step 1.
 #### Geriau nekandžiok
 ## Step 2.
