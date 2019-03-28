@@ -64,7 +64,7 @@ Class User {
     }
 
     public function getUsername() {
-        return $this->data['name'];
+        return $this->data['username'];
     }
 
     public function getEmail() {

@@ -143,7 +143,18 @@ $model_user = new App\Model\ModelUser($db, USER);
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-<?php require '../core/views/form.php'; ?>
+        <?php foreach ($model_user->loadAll() as $user): ?>
+            <div class="katalogas">
+                <h2>Username: <?php print $user->getUsername(); ?></h2>
+                <p>Email: <?php print $user->getEmail(); ?></p>
+                <p>Full Name: <?php print $user->getFullName(); ?></p>
+                <p>Age: <?php print $user->getAge(); ?></p>
+                <p>Gender: <?php print $user->getGender(); ?></p>
+                <p>Orientation: <?php print $user->getOrientation(); ?></p>
+                <img class="kokteilis-img" src="<?php print $user->getPhoto(); ?>"
+            </div>
+        <?php endforeach; ?>
+        <?php require '../core/views/form.php'; ?>
         <h3><?php print $success_msg; ?></h3>
     </body>
 </html>
