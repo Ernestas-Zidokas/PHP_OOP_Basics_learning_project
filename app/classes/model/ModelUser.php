@@ -65,17 +65,8 @@ Class ModelUser {
         return $user_masyvas;
     }
 
-    public function deleteRows() {
+    public function deleteAll() {
         if ($this->db->deleteRows($this->table_name)) {
-            $this->db->save();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function deleteTable() {
-        if ($this->db->deleteTable($this->table_name)) {
             $this->db->save();
             return true;
         } else {

@@ -52,9 +52,9 @@ Class User {
 
     public function setOrientation(string $orientation) {
         if (in_array($orientation, [
-            $this::ORIENTATION_GAY, 
-            $this::ORIENTATION_STRAIGHT, 
-            $this::ORIENTATION_BISEXUAL])) {
+                    $this::ORIENTATION_GAY,
+                    $this::ORIENTATION_STRAIGHT,
+                    $this::ORIENTATION_BISEXUAL])) {
             $this->data['orientation'] = $orientation;
         }
     }
@@ -85,6 +85,17 @@ Class User {
 
     public function getOrientation() {
         return $this->data['orientation'];
+    }
+
+    public static function getGenderOptions() {
+        return [self::GENDER_FEMALE => 'Female',
+            self::GENDER_MALE => 'Male'];
+    }
+
+    public static function getOrientationOptions() {
+        return [self::ORIENTATION_GAY => 'Gay',
+            self::ORIENTATION_STRAIGHT => 'Straight',
+            self::ORIENTATION_BISEXUAL => 'Bisexual'];
     }
 
     public function getPhoto() {
