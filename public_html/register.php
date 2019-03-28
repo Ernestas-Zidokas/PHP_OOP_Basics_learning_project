@@ -87,7 +87,7 @@ function form_success($safe_input, $form) {
         'age' => $safe_input['age'],
         'gender' => $safe_input['gender'],
         'orientation' => $safe_input['orientation'],
-        'photo' => $safe_input['photo'],
+        'photo' => $safe_input['photo']
     ]);
 
     $db = new Core\FileDB(ROOT_DIR . '/app/files/db.txt');
@@ -151,10 +151,12 @@ $model_user = new App\Model\ModelUser($db, USER);
                 <p>Age: <?php print $user->getAge(); ?></p>
                 <p>Gender: <?php print $user->getGender(); ?></p>
                 <p>Orientation: <?php print $user->getOrientation(); ?></p>
-                <img class="kokteilis-img" src="<?php print $user->getPhoto(); ?>"
+                <img class="user-img" src="<?php print $user->getPhoto(); ?>">
             </div>
         <?php endforeach; ?>
         <?php require '../core/views/form.php'; ?>
+        <?php if(isset($success_msg)): ?>
         <h3><?php print $success_msg; ?></h3>
+        <?php endif; ?>
     </body>
 </html>

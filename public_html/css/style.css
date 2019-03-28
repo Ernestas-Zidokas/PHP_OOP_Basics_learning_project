@@ -1,4 +1,4 @@
-.katalogas .kokteilis-img {
+.katalogas .kokteilis-img, .user-img {
     width: 300px;
     height: 400px;
     object-fit: contain;
