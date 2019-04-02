@@ -6,7 +6,7 @@ class Girl {
     
     protected $age;
     
-    function __construct($age) {
+    public function __construct($age) {
         $this->age = $age;
     }
 
