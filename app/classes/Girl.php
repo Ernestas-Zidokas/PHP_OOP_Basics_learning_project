@@ -2,7 +2,7 @@
 
 namespace App;
 
-Class Girl {
+class Girl {
 
     public function beSmart() {
         return 'Im Smart';
