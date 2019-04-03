@@ -2,10 +2,10 @@
 require_once '../bootloader.php';
 
 $sensors = new \App\Sensors();
-$fart_sensor = new App\SensorFartTemp;
-$humidity_sensor = new App\SensorFartHumidity;
-$sensors->add('Temp Sensor', $fart_sensor);
-$sensors->add('Humidity Sensor', $humidity_sensor);
+$sensor_fart_temp = new App\SensorFartTemp();
+$sensor_fart_humidity = new App\SensorFartHumidity();
+$sensors->add('Temp Sensor', $sensor_fart_temp);
+$sensors->add('Humidity Sensor', $sensor_fart_humidity);
 ?>
 <html>
     <head>
