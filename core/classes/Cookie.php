@@ -22,7 +22,7 @@ class Cookie extends Core\Abstracts\Cookie {
             if (json_decode($cookie)) {
                 return json_decode($cookie, true);
             } else {
-                trigger_error("Nepavyko decodint cookie", E_USER_ERROR);
+                trigger_error("Nepavyko decodint cookie", E_WARNING);
                 return [];
             }
         } else {
