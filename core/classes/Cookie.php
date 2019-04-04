@@ -22,7 +22,7 @@ class Cookie extends Core\Abstracts\Cookie {
             if (json_decode($cookie)) {
                 return json_decode($cookie, true);
             } else {
-                error_reporting(E_ERROR | E_WARNING | E_PARSE);
+                error_reporting(E_WARNING);
                 return [];
             }
         } else {
