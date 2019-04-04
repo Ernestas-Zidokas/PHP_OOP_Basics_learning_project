@@ -17,17 +17,18 @@ class Cookie extends Core\Abstracts\Cookie {
     }
 
     public function read(): array {
+        $cookie = [];
         if ($this->exists()) {
-            $cookie = $_COOKIE[$this->name];
-            if (json_decode($cookie)) {
-                return json_decode($cookie, true);
+            $cookie = json_decode($_COOKIE[$this->name], true);            
+            if ($cookie) {
+                return $cookie;
             } else {
                 trigger_error("Nepavyko decodint cookie", E_WARNING);
-                return [];
+                return $cookie;
             }
-        } else {
-            return [];
         }
+        
+        return $cookie;
     }
 
     public function save($data, $expires_in = 3600): void {
