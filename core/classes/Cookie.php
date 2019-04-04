@@ -9,7 +9,7 @@ class Cookie extends Core\Abstracts\Cookie {
     }
 
     public function delete(): void {
-        setcookie($cookie_name, '', time() - 3600);
+        setcookie($this->name, '', time() - 3600);
     }
 
     public function exists(): bool {
