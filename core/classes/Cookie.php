@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Cookie extends Core\abstracts\Cookie {
+class Cookie extends Core\Abstracts\Cookie {
 
     public function __construct(string $name) {
         $this->name = $name;
@@ -13,7 +13,7 @@ class Cookie extends Core\abstracts\Cookie {
     }
 
     public function exists(): bool {
-        
+        return $_COOKIE[$this->name] ?? true;
     }
 
     public function read(): array {
