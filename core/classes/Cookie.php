@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Cookie extends Core\Abstracts\Cookie {
+class Cookie extends Abstracts\Cookie {
 
     public function __construct(string $name) {
         $this->name = $name;
