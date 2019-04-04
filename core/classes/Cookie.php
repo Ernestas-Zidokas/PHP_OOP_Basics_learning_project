@@ -13,15 +13,21 @@ class Cookie extends Core\Abstracts\Cookie {
     }
 
     public function exists(): bool {
-       if(isset($_COOKIE[$this->name])){
-            return true;
-        }
-        
-        return false;
+        return isset($_COOKIE[$this->name]);
     }
 
     public function read(): array {
-        
+        if ($this->exists()) {
+            $cookie = $_COOKIE[$this->name];
+            if (json_decode($cookie)) {
+                return json_decode($cookie, true);
+            } else {
+                error_reporting(E_ERROR | E_WARNING | E_PARSE);
+                return [];
+            }
+        } else {
+            return [];
+        }
     }
 
     public function save($data, $expires_in = 3600): void {
