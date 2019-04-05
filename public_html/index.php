@@ -3,7 +3,7 @@ require_once '../bootloader.php';
 
 $cookie = new \Core\Cookie('cookie_test');
 
-if (isset($_COOKIE['cookie_test'])) {
+if ($cookie->exists()) {
     $cookie_array = $cookie->read();
     $cookie_array[0]++;
     $cookie->save($cookie_array);
@@ -17,7 +17,7 @@ if (isset($_COOKIE['cookie_test'])) {
     </head>
     <body>
         <div>
-            <?php if(isset($_COOKIE['cookie_test'])): ?>
+            <?php if($cookie->exists()): ?>
             <?php print $cookie->read()[0]; ?>
             <?php endif; ?>
         </div>
